@@ -1,6 +1,6 @@
 import { HfInference } from "@huggingface/inference";
 
-const client = new HfInference("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");
+const client = new HfInference(import.meta.env.VITE_HUGGING_FACE_API);
 
 async function chatCompletion_ibm_granite(prompt) {
     try {

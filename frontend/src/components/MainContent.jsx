@@ -26,13 +26,13 @@ const MainContent = () => {
   } = useContext(Context);
 
   return (
-    <div className="flex-1 min-h-screen pb-[15vh] relative bg-[#1D1E20]">
+    <div className="flex-1 min-h-screen pb-[10vh] relative bg-[#1D1E20] text-white">
       <div className="flex items-center justify-between text-xl p-5 text-slate-700">
         <p className="text-white font-bold">1 One-AI</p>
         <FaUserCircle />
       </div>
 
-      <div className="max-w-[900px] mx-auto">
+      <div className="max-w-[900px] mx-auto scrollbar">
         {!showResult ? (
           <>
             <div className="my-12 text-[56px] text-slate-500 font-semibold p-5">
@@ -80,7 +80,7 @@ const MainContent = () => {
             </div>
           </>
         ) : (
-          <div className="py-0 px-[5%] max-h-[70vh] overflow-y-scroll scrollbar-hidden">
+          <div className="py-0 px-[5%] max-h-[70vh] overflow-y-scroll scrollbar">
             <div className="my-10 mx-0 flex items-center gap-5">
               <FaUserCircle className="text-3xl" />
 
@@ -111,7 +111,7 @@ const MainContent = () => {
           <input
   type="text"
   placeholder="Enter a prompt here..."
-  className="flex-1 bg-transparent border-none outline-none p-2 text-lg"
+  className="flex-1 bg-transparent border-none outline-none p-2 text-lg text-black"
   value={input}
   onChange={(e) => setInput(e.target.value)}
   onKeyDown={(e) => {
@@ -123,12 +123,12 @@ const MainContent = () => {
 
 
             <div className="flex gap-4 items-center">
-              <MdAddPhotoAlternate className="text-2xl cursor-pointer" />
-              <FaMicrophone className="text-2xl cursor-pointer" />
+              <MdAddPhotoAlternate className="text-2xl  text-black" />
+              <FaMicrophone className="text-2xl  text-black" />
               {input && (
                 <IoMdSend
                   onClick={() => onSent()}
-                  className="text-2xl cursor-pointer"
+                  className="text-2xl  text-black"
                 />
               )}
             </div>

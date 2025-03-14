@@ -7,7 +7,7 @@ import { Context } from "../context/Context";
 
 const Sidebar = () => {
   const [extended, setExtended] = useState(false);
-  const { newChat, setChooseAI, chooseAI } = useContext(Context); 
+  const { newChat, setChooseAI, chooseAI,onSent } = useContext(Context); 
 
   const aiModels = [
     { name: "Meta-Llama", key: "meta-llama",img_src:"https://asset.kompas.com/crops/lFgJr6bjgPhh0Xs0dli1Z7ybLwg=/109x0:909x533/1200x800/data/photo/2024/07/25/66a1c8562d0ef.png" },
@@ -20,6 +20,11 @@ const Sidebar = () => {
     { name: "IBM_Granite", key: "ibm_granite",img_src:"https://developer-blogs.nvidia.com/wp-content/uploads/2024/10/IBM-Granite-Models-NVIDIA-1.png" },
     { name: "Gemma", key: "gemma",img_src:"https://res.infoq.com/news/2024/02/google-gemma-open-model/en/headerimage/generatedHeaderImage-1708977571481.jpg" },
   ];
+
+  const response=async(key)=>{
+    setChooseAI(key)
+    await onSent();
+  }
 
   return (
     // <div className="min-h-screen inline-flex flex-col justify-between bg-[#e4e7eb] py-[25px] px-[15px]">
@@ -79,7 +84,7 @@ const Sidebar = () => {
 
     <div className="w-[22%] bg-[#171717] text-white">
       <div className="w-full flex justify-center">
-      <input placeholder="Search models..." className="p-2 text-black border-none focus:outline-none bg-[#E5E7EB] rounded-md w-9/10 h-12 mt-10 " />
+      <input placeholder="Search models..." className="p-2 text-black border-none focus:outline-none bg-[#E5E7EB] rounded-xl w-9/10 h-12 mt-10 " />
       </div>
 
       <div className="flex flex-col animate-fadeIn duration-1000 p-5">
@@ -90,15 +95,15 @@ const Sidebar = () => {
                 
               <button
                 key={ai.key}
-                onClick={() => setChooseAI(ai.key)}
-                className={`font-semibold w-full mt-[10px] inline-flex items-center gap-[10px] py-[10px] px-[15px] text-[14px] cursor-pointer rounded-md transition
+                onClick={() => response(ai.key)}
+                className={`font-semibold w-full mt-[10px] inline-flex items-center gap-[10px] py-[10px] px-[15px] text-[16px] cursor-pointer rounded-md transition
                 ${
                   chooseAI === ai.key
                     ? "bg-[#3c3b3b] text-white " // ✅ Stays blue when selected
                     : "bg-[#171717] hover:bg-gray-400 text-white"
                 }`}
               >
-                <img className=" scale-115 rounded-md h-10 w-16 mr-2" src={ai.img_src} />
+                <img className=" scale-115 rounded-full h-10 w-10 mr-2" src={ai.img_src} />
                 {ai.name}
               </button>
              

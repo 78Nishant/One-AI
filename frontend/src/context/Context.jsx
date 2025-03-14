@@ -16,7 +16,7 @@ const ContextProvider = (props) => {
   const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
-  const [chooseAI, setChooseAI] = useState("gemini"); // ✅ Default AI selected
+  const [chooseAI, setChooseAI] = useState("meta-llama"); // ✅ Default AI selected
 
   const delayPara = (index, nextWord) => {
     setTimeout(() => {
@@ -81,7 +81,7 @@ const ContextProvider = (props) => {
     }
 
     setLoading(false);
-    setInput("");
+    // setInput("");
   };
 
   const contextValue = {

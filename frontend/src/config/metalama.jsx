@@ -16,7 +16,7 @@ async function chatCompletion_meta(prompt) {
       max_tokens: 500,
     });
 
-    console.log("hello")
+    
     console.log(response.choices[0].message.content)
 
     return response.choices[0].message.content; 

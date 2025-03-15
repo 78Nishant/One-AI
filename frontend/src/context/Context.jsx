@@ -58,31 +58,31 @@ const ContextProvider = (props) => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
-
-    let responseText;
-    if (prompt !== undefined) {
-      responseText = await getAIResponse(prompt);
-      setRecentPrompt(prompt);
-    } else {
-      setPrevPrompt((prev) => [...prev, input]);
-      setRecentPrompt(input);
-      responseText = await getAIResponse(input);
-    }
-
+  
+    let query = prompt !== undefined ? prompt : input;
+    setRecentPrompt(query);
+  
+    // Store in localStorage
+    let history = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    history.unshift(query); // Add new search at the beginning
+    localStorage.setItem("searchHistory", JSON.stringify(history));
+  
+    let responseText = await getAIResponse(query);
+  
     if (!responseText) {
       setResultData("Error: No response received.");
       setLoading(false);
       return;
     }
-
+  
     let responseArray = responseText.split(" ");
     for (let i = 0; i < responseArray.length; i++) {
       delayPara(i, responseArray[i] + " ");
     }
-
+  
     setLoading(false);
-    // setInput("");
   };
+  
 
   const contextValue = {
     input,
